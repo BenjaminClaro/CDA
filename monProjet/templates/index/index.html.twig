@@ -9,7 +9,12 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{Produits.produit_nom}} </h1>
+
+{% for fournisseurs in fournisseur %}
+
+    <h1>Hello {{fournisseurs.nom}} </h1>
+
+{% endfor %}
 
     This friendly message is coming from:
     <ul>
