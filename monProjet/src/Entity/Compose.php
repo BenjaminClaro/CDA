@@ -14,21 +14,45 @@ class Compose
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\ManyToOne]
+    private ?produits $produit = null;
+
+    #[ORM\ManyToOne]
+    private ?commandes $commande = null;
+
     #[ORM\Column]
     private ?int $quantite = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $reduction = null;
-
-    #[ORM\ManyToOne]
-    private ?produits $produits = null;
-
-    #[ORM\ManyToOne]
-    private ?commandes $commandes = null;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getProduit(): ?produits
+    {
+        return $this->produit;
+    }
+
+    public function setProduit(?produits $produit): static
+    {
+        $this->produit = $produit;
+
+        return $this;
+    }
+
+    public function getCommande(): ?commandes
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?commandes $commande): static
+    {
+        $this->commande = $commande;
+
+        return $this;
     }
 
     public function getQuantite(): ?int
@@ -51,30 +75,6 @@ class Compose
     public function setReduction(string $reduction): static
     {
         $this->reduction = $reduction;
-
-        return $this;
-    }
-
-    public function getProduits(): ?produits
-    {
-        return $this->produits;
-    }
-
-    public function setProduits(?produits $produits): static
-    {
-        $this->produits = $produits;
-
-        return $this;
-    }
-
-    public function getCommandes(): ?commandes
-    {
-        return $this->commandes;
-    }
-
-    public function setCommandes(?commandes $commandes): static
-    {
-        $this->commandes = $commandes;
 
         return $this;
     }

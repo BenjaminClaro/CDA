@@ -16,6 +16,9 @@ class Rubriques
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $photo = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class Rubriques
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(string $photo): static
+    {
+        $this->photo = $photo;
 
         return $this;
     }

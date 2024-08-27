@@ -16,8 +16,11 @@ class SousRubriques
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $photo = null;
+
     #[ORM\ManyToOne]
-    private ?rubriques $rubriques = null;
+    private ?rubriques $rubrique = null;
 
     public function getId(): ?int
     {
@@ -36,14 +39,26 @@ class SousRubriques
         return $this;
     }
 
-    public function getRubriques(): ?rubriques
+    public function getPhoto(): ?string
     {
-        return $this->rubriques;
+        return $this->photo;
     }
 
-    public function setRubriques(?rubriques $rubriques): static
+    public function setPhoto(string $photo): static
     {
-        $this->rubriques = $rubriques;
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getRubrique(): ?rubriques
+    {
+        return $this->rubrique;
+    }
+
+    public function setRubrique(?rubriques $rubrique): static
+    {
+        $this->rubrique = $rubrique;
 
         return $this;
     }

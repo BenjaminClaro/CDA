@@ -14,26 +14,20 @@ class Fournisseurs
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $reference = null;
+    private ?string $nom = null;
+
+    #[ORM\Column(length: 10)]
+    private ?string $telephone = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
+    private ?string $adresse = null;
+
+    #[ORM\ManyToOne]
+    private ?utilisateurs $gérant = null;
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getReference(): ?string
-    {
-        return $this->reference;
-    }
-
-    public function setReference(string $reference): static
-    {
-        $this->reference = $reference;
-
-        return $this;
     }
 
     public function getNom(): ?string
@@ -44,6 +38,42 @@ class Fournisseurs
     public function setNom(string $nom): static
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(string $telephone): static
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): static
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getGérant(): ?utilisateurs
+    {
+        return $this->gérant;
+    }
+
+    public function setGérant(?utilisateurs $gérant): static
+    {
+        $this->gérant = $gérant;
 
         return $this;
     }

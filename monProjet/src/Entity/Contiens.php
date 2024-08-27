@@ -2,12 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\FournieRepository;
-use Doctrine\DBAL\Types\Types;
+use App\Repository\ContiensRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: FournieRepository::class)]
-class Fournie
+#[ORM\Entity(repositoryClass: ContiensRepository::class)]
+class Contiens
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,13 +17,10 @@ class Fournie
     private ?produits $produit = null;
 
     #[ORM\ManyToOne]
-    private ?fournisseurs $fournisseur = null;
+    private ?Livraison $livraison = null;
 
     #[ORM\Column]
     private ?int $quantite = null;
-
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $date = null;
 
     public function getId(): ?int
     {
@@ -43,14 +39,14 @@ class Fournie
         return $this;
     }
 
-    public function getFournisseur(): ?fournisseurs
+    public function getLivraison(): ?Livraison
     {
-        return $this->fournisseur;
+        return $this->livraison;
     }
 
-    public function setFournisseur(?fournisseurs $fournisseur): static
+    public function setLivraison(?Livraison $livraison): static
     {
-        $this->fournisseur = $fournisseur;
+        $this->livraison = $livraison;
 
         return $this;
     }
@@ -63,18 +59,6 @@ class Fournie
     public function setQuantite(int $quantite): static
     {
         $this->quantite = $quantite;
-
-        return $this;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): static
-    {
-        $this->date = $date;
 
         return $this;
     }

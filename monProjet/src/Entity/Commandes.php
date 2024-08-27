@@ -20,8 +20,14 @@ class Commandes
     #[ORM\Column(length: 255)]
     private ?string $reglement = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $adresse_livraison = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $adresse_facturation = null;
+
     #[ORM\ManyToOne]
-    private ?utilisateurs $utilisateurs = null;
+    private ?utilisateurs $utilisateur = null;
 
     public function getId(): ?int
     {
@@ -52,14 +58,38 @@ class Commandes
         return $this;
     }
 
-    public function getUtilisateurs(): ?utilisateurs
+    public function getAdresseLivraison(): ?string
     {
-        return $this->utilisateurs;
+        return $this->adresse_livraison;
     }
 
-    public function setUtilisateurs(?utilisateurs $utilisateurs): static
+    public function setAdresseLivraison(string $adresse_livraison): static
     {
-        $this->utilisateurs = $utilisateurs;
+        $this->adresse_livraison = $adresse_livraison;
+
+        return $this;
+    }
+
+    public function getAdresseFacturation(): ?string
+    {
+        return $this->adresse_facturation;
+    }
+
+    public function setAdresseFacturation(string $adresse_facturation): static
+    {
+        $this->adresse_facturation = $adresse_facturation;
+
+        return $this;
+    }
+
+    public function getUtilisateur(): ?utilisateurs
+    {
+        return $this->utilisateur;
+    }
+
+    public function setUtilisateur(?utilisateurs $utilisateur): static
+    {
+        $this->utilisateur = $utilisateur;
 
         return $this;
     }

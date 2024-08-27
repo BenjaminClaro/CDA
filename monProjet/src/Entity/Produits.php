@@ -20,10 +20,10 @@ class Produits
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $prix_achat = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $prix_vente = null;
 
     #[ORM\Column(length: 255)]
@@ -33,10 +33,7 @@ class Produits
     private ?int $stock = null;
 
     #[ORM\ManyToOne]
-    private ?rubriques $rubriques = null;
-
-    #[ORM\ManyToOne]
-    private ?SousRubriques $sous_rubriques = null;
+    private ?SousRubriques $sous_rubrique = null;
 
     public function getId(): ?int
     {
@@ -115,26 +112,14 @@ class Produits
         return $this;
     }
 
-    public function getRubriques(): ?rubriques
+    public function getSousRubrique(): ?SousRubriques
     {
-        return $this->rubriques;
+        return $this->sous_rubrique;
     }
 
-    public function setRubriques(?rubriques $rubriques): static
+    public function setSousRubrique(?SousRubriques $sous_rubrique): static
     {
-        $this->rubriques = $rubriques;
-
-        return $this;
-    }
-
-    public function getSousRubriques(): ?SousRubriques
-    {
-        return $this->sous_rubriques;
-    }
-
-    public function setSousRubriques(?SousRubriques $sous_rubriques): static
-    {
-        $this->sous_rubriques = $sous_rubriques;
+        $this->sous_rubrique = $sous_rubrique;
 
         return $this;
     }

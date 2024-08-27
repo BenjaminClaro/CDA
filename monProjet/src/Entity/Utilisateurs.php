@@ -26,11 +26,14 @@ class Utilisateurs
     #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2)]
     private ?string $reduction = null;
 
+    #[ORM\Column(length: 10)]
+    private ?string $telephon = null;
+
     #[ORM\Column(length: 255)]
-    private ?string $adresse_facturation = null;
+    private ?string $adresse = null;
 
     #[ORM\ManyToOne]
-    private ?utilisateurs $commercial = null;
+    private ?utilisateurs $referent = null;
 
     public function getId(): ?int
     {
@@ -85,26 +88,38 @@ class Utilisateurs
         return $this;
     }
 
-    public function getAdresseFacturation(): ?string
+    public function getTelephon(): ?string
     {
-        return $this->adresse_facturation;
+        return $this->telephon;
     }
 
-    public function setAdresseFacturation(string $adresse_facturation): static
+    public function setTelephon(string $telephon): static
     {
-        $this->adresse_facturation = $adresse_facturation;
+        $this->telephon = $telephon;
 
         return $this;
     }
 
-    public function getCommercial(): ?utilisateurs
+    public function getAdresse(): ?string
     {
-        return $this->commercial;
+        return $this->adresse;
     }
 
-    public function setCommercial(?utilisateurs $commercial): static
+    public function setAdresse(string $adresse): static
     {
-        $this->commercial = $commercial;
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getReferent(): ?utilisateurs
+    {
+        return $this->referent;
+    }
+
+    public function setReferent(?utilisateurs $referent): static
+    {
+        $this->referent = $referent;
 
         return $this;
     }

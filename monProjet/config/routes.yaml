@@ -2,4 +2,6 @@ index:
   path: /
   controller: App\Controller\IndexController::index
 
-
+souscategories:
+  path: /souscategories
+  controller: App\Controller\SouscategoriesController::index
