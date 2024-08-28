@@ -23,7 +23,7 @@ class Fournisseurs
     private ?string $adresse = null;
 
     #[ORM\ManyToOne]
-    private ?utilisateurs $gérant = null;
+    private ?utilisateurs $gerant = null;
 
     public function getId(): ?int
     {
@@ -66,14 +66,14 @@ class Fournisseurs
         return $this;
     }
 
-    public function getGérant(): ?utilisateurs
+    public function getGerant(): ?utilisateurs
     {
-        return $this->gérant;
+        return $this->gerant;
     }
 
-    public function setGérant(?utilisateurs $gérant): static
+    public function setGerant(?utilisateurs $gerant): static
     {
-        $this->gérant = $gérant;
+        $this->gerant = $gerant;
 
         return $this;
     }

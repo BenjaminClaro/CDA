@@ -6,19 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-use App\Repository\FournisseursRepository;
-
-class IndexController extends AbstractController
+class ProduitsController extends AbstractController
 {
-    #[Route('/', name: 'app_index')]
+    #[Route('/produits', name: 'app_produits')]
     public function index(): Response
     {
-
-        
-
-        return $this->render('index/index.html.twig', [
-            'controller_name' => 'IndexController',
-            
+        return $this->render('produits/index.html.twig', [
+            'controller_name' => 'ProduitsController',
         ]);
     }
 }
