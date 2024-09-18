@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SousRubriquesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Rubriques;
 
 #[ORM\Entity(repositoryClass: SousRubriquesRepository::class)]
 class SousRubriques

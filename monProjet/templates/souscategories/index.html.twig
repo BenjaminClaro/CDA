@@ -9,9 +9,22 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Sous Rubriques </h1>
+    <div class="container">
+        <div class="text font-weight-bold h2 mt-2 d-none d-md-block">Sous-Rubriques :</div>
+ 
+                <div class="row ">
 
-    
+                    {% for sousrubriques in sousrubriques %}
+
+                        <div class="col-4 mt-3 hover"> {{sousrubriques.nom}}<a href="/souscategories"> <img src="{{asset('images/'~sousrubriques.photo)}}" alt="{{sousrubriques.nom}}" class="img-fluid img-thumbnail"></a></div>
+                       
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
