@@ -6,6 +6,19 @@ souscategories:
   path: /souscategories
   controller: App\Controller\SouscategoriesController::index
 
+app_souscategories2:
+  path: /souscategories/{rubrique}
+  controller: App\Controller\SouscategoriesController::index
+
+
 produits:
   path: /produits
   controller: App\Controller\ProduitsController::index
+
+
+#controllers:
+#  resource:
+ #   path: ../src/Controller/
+  #  namespace: App\Controller
+ # type: attribute
+

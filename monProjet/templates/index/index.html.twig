@@ -17,7 +17,7 @@
 
                     {% for rubriques in rubriques %}
 
-                        <div class="col-4 mt-3 hover"> {{rubriques.nom}}<a href="/souscategories"> <img src="{{asset('images/'~rubriques.photo)}}" alt="{{rubriques.nom}}" class="img-fluid img-thumbnail"></a></div>
+                        <div class="col-4 mt-3 hover"> {{rubriques.nom}}<a href="{{ path('app_souscategories2', {'rubrique': rubriques.id})}}"> <img src="{{asset('images/'~rubriques.photo)}}" alt="{{rubriques.nom}}" class="img-fluid img-thumbnail"></a></div>
                        
                     {% endfor %}
 
