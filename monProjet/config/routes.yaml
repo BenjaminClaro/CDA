@@ -4,16 +4,20 @@ index:
 
 souscategories:
   path: /souscategories
-  controller: App\Controller\SouscategoriesController::index
+  controller: App\Controller\SouscategoriesController::index0
 
 app_souscategories2:
-  path: /souscategories/{rubrique}
+  path: /souscategories/{rubrique_id}
   controller: App\Controller\SouscategoriesController::index
 
 
 produits:
   path: /produits
   controller: App\Controller\ProduitsController::index
+
+app_produits2:
+  path: /produits/{sous_rubrique_id}
+  controller: App\Controller\ProduitsController::index2
 
 
 #controllers:

@@ -4,8 +4,7 @@
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+
 </style>
 
 <div class="example-wrapper">
@@ -16,7 +15,7 @@
 
                     {% for sousrubriques in sousrubriques %}
 
-                        <div class="col-4 mt-3 hover"> {{sousrubriques.nom}}<a href="/produits"> <img src="{{asset('images/'~sousrubriques.photo)}}" alt="{{sousrubriques.nom}}" class="img-fluid img-thumbnail"></a></div>
+                        <div class="col-4 mt-3 hover"> {{sousrubriques.nom}}<a href="{{ path('app_produits2', {'sous_rubrique_id': sousrubriques.id})}}"> <img src="{{asset('images/'~sousrubriques.photo)}}" alt="{{sousrubriques.nom}}" class="img-fluid img-thumbnail"></a></div>
                        
                     {% endfor %}
 

@@ -12,31 +12,38 @@ use App\Repository\RubriquesRepository;
 
 
 class SouscategoriesController extends AbstractController
-    {#[Route('/souscategories', name: 'app_souscategories')]
-    public function index(RubriquesRepository $rubriquesRepository, SousRubriquesRepository $sousrubriquesRepository): Response
     {
 
-        $sousrubriques = $sousrubriquesRepository->findAll();
-        $rubriques = $rubriquesRepository->findAll();
 
+    #[Route('/souscategories', name: 'app_souscategories')]
+    public function index0(RubriquesRepository $rubriquesRepository, SousRubriquesRepository $sousrubriquesRepository): Response
+    {
+    
+        $rubrique = $rubriquesRepository->findAll();
+        $sousrubrique = $sousrubriquesRepository->findAll();
+    
         return $this->render('souscategories/index.html.twig', [
             'controller_name' => 'SouscategoriesController',
-            'sousrubriques' => $sousrubriques,
-            'rubriques' => $rubriques,
+            'rubriques' => $rubrique,
+            'sousrubriques' => $sousrubrique,
         ]);
     }
 
-    #[Route('/souscategories/{rubrique}', name: 'app_souscategories2', methods:['GET'])]
-    public function index2(RubriquesRepository $rubriquesRepository, SousRubriquesRepository $sousrubriquesRepository, int $rubrique): Response
+
+    #[Route('/souscategories/{rubrique_id}', name: 'app_souscategories2', methods:['GET'])]
+    public function index(RubriquesRepository $rubriquesRepository, SousRubriquesRepository $sousrubriquesRepository, int $rubrique_id): Response
     {
 
-
-        $rubriques = $rubriquesRepository->find($rubrique);
+        $rubriques = $rubriquesRepository->find($rubrique_id);
 
         return $this->render('souscategories/souscat_id.html.twig', [
             'controller_name' => 'SouscategoriesController',
 
-            'sousrubriques' => $sousrubriquesRepository->findBy(['rubriques'=>$rubrique]),
+            'sousrubriques' => $sousrubriquesRepository->findBy(['rubrique'=>$rubrique_id]),
         ]);
     }
+
+
+
+
 }

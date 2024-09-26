@@ -15,13 +15,13 @@ class IndexController extends AbstractController
     public function index(RubriquesRepository $rubriquesRepository, SousRubriquesRepository $sousrubriquesRepository): Response
     {
 
-        $rubriques = $rubriquesRepository->findAll();
-        $sousrubriques = $sousrubriquesRepository->findAll();
+        $rubrique = $rubriquesRepository->findAll();
+        $sousrubrique = $sousrubriquesRepository->findAll();
 
         return $this->render('index/index.html.twig', [
             'controller_name' => 'IndexController',
-            'rubriques' => $rubriques,
-            'sousrubriques' => $sousrubriques,
+            'rubriques' => $rubrique,
+            'sousrubriques' => $sousrubrique,
         ]);
     }
 }

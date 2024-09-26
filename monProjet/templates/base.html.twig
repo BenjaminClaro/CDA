@@ -7,7 +7,8 @@
         <link rel="icon" type="image/x-icon" href="images/logo.png">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-
+        <style>div.hover{transform: scale(1.0 );  transition-duration: 0.5s ;}</style>
+        <style>.hover:hover {transform: scale(1.12);}</style>
         
 
         {% endblock %}

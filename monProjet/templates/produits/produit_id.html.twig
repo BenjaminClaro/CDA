@@ -3,6 +3,9 @@
 {% block title %}Hello ProduitsController!{% endblock %}
 
 {% block body %}
+<style>
+
+</style>
 
 <div class="example-wrapper">
     <div class="container">
@@ -16,8 +19,8 @@
                         {{produits.nom}}
                         <img src="{{asset('images/'~produits.photo)}}" alt="{{produits.nom}}" class="img-fluid img-thumbnail"> 
                         {{produits.description}} <br> 
-                        {{produits.prixvente}}€<br>
-                        <a href="" class="btn btn-secondary ">Commander</a>
+                        {{produits.prixvente}}€ <br> 
+                        <a href="" class="btn btn-secondary">Commander</a>
                         </div>
                        
                     {% endfor %}
