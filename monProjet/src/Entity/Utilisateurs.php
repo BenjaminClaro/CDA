@@ -5,8 +5,10 @@ namespace App\Entity;
 use App\Repository\UtilisateursRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: UtilisateursRepository::class)]
+#[ApiResource]
 class Utilisateurs
 {
     #[ORM\Id]
@@ -40,6 +42,9 @@ class Utilisateurs
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $password = null;
 
     public function getId(): ?int
     {
@@ -150,6 +155,18 @@ class Utilisateurs
     public function setEmail(string $email): static
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(?string $password): static
+    {
+        $this->password = $password;
 
         return $this;
     }

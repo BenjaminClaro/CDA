@@ -20,6 +20,16 @@ app_produits2:
   controller: App\Controller\ProduitsController::index2
 
 
+register:
+  path: /register
+  controller: App\Controller\RegisterController::register
+
+
+dashboard:
+    path: /admin
+    controller: App\Controller\Admin\DashboardController::index
+
+
 #controllers:
 #  resource:
  #   path: ../src/Controller/

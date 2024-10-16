@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\RubriquesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+
 #[ORM\Entity(repositoryClass: RubriquesRepository::class)]
+#[ApiResource]
 class Rubriques
 {
     #[ORM\Id]

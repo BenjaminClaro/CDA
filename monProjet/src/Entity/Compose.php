@@ -5,8 +5,10 @@ namespace App\Entity;
 use App\Repository\ComposeRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: ComposeRepository::class)]
+#[ApiResource]
 class Compose
 {
     #[ORM\Id]

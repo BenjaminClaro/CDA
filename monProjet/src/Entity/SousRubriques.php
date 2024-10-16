@@ -5,8 +5,10 @@ namespace App\Entity;
 use App\Repository\SousRubriquesRepository;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Rubriques;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: SousRubriquesRepository::class)]
+#[ApiResource]
 class SousRubriques
 {
     #[ORM\Id]

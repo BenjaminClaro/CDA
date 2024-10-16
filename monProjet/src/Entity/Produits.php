@@ -5,8 +5,10 @@ namespace App\Entity;
 use App\Repository\ProduitsRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: ProduitsRepository::class)]
+#[ApiResource]
 class Produits
 {
     #[ORM\Id]
