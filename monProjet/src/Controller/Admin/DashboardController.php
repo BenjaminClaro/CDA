@@ -4,9 +4,12 @@ namespace App\Controller\Admin;
 
 use App\Controller\Admin\RubriquesCrudController;
 use App\Entity\Rubriques;
+use App\Controller\Admin\SousRubriquesCrudController;
 use App\Entity\SousRubriques;
 use App\Controller\Admin\UtilisateursCrudController;
 use App\Entity\Utilisateurs;
+use App\Controller\Admin\ProduitsCrudController;
+use App\Entity\Produits;
 
 
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
@@ -51,5 +54,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', Utilisateurs::class);
         yield MenuItem::linkToCrud('Rubriques', 'fa fa-tag', Rubriques::class);
+        yield MenuItem::linkToCrud('Sous-Rubriques', 'fa fa-tag', SousRubriques::class);
+        yield MenuItem::linkToCrud('Produits', 'fa fa-tag', Produits::class);
     }
 }

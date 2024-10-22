@@ -1,15 +1,18 @@
 <?php
 
 namespace App\Entity;
-
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use App\Repository\UtilisateursRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: UtilisateursRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 #[ApiResource]
-class Utilisateurs
+class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -75,14 +78,19 @@ class Utilisateurs
         return $this;
     }
 
-    public function getRole(): ?string
+    public function getRoles(): ?string
     {
-        return $this->role;
+
+        $role = $this->role;
+        $role = 'Client';
+
+        return array_unique($role);
     }
 
-    public function setRole(string $role): static
+    public function setRoles(string $role): static
     {
         $this->role = $role;
+        
 
         return $this;
     }
@@ -159,6 +167,11 @@ class Utilisateurs
         return $this;
     }
 
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
     public function getPassword(): ?string
     {
         return $this->password;
@@ -170,4 +183,24 @@ class Utilisateurs
 
         return $this;
     }
+
+
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+    public function getSalt()
+    {
+        // The bcrypt and argon2i algorithms don't require a separate salt.
+        // You *may* need a real salt if you choose a different encoder.
+        return null;
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
 }
