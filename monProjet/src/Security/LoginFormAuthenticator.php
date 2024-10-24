@@ -3,44 +3,54 @@
 namespace App\Security;
 
 
+use App\Entity\Utilisateurs;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
-use Symfony\Component\Security\Http\Authenticator\Passport\Badge\RememberMeBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
-use Symfony\Component\Security\Http\SecurityRequestAttributes;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class Authenticator extends AbstractLoginFormAuthenticator
+class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
     public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
+
+
+    private UrlGeneratorInterface $urlGenerator;
+
+    public function __construct(UrlGeneratorInterface $urlGenerator)
     {
+        $this->urlGenerator = $urlGenerator;
     }
 
-    public function authenticate(Request $request): Passport
+    public function supports(Request $request): bool
     {
-        $email = $request->request->get('email');
+        return self::LOGIN_ROUTE === $request->attributes->get('_route')
+            && $request->isMethod('POST');
+    }
 
-        $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $email);
+
+        public function authenticate(Request $request): Passport
+    {
+        $email = $request->request->get('email', '');
+
+        $request->getSession()->set(Security::LAST_USERNAME, $email);
 
         return new Passport(
             new UserBadge($email),
-            new PasswordCredentials($request->request->get('password')),
+            new PasswordCredentials($request->request->get('password', '')),
             [
-                new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
-                new RememberMeBadge(),
-            ]
+                new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),            ]
         );
     }
 
@@ -51,15 +61,13 @@ class Authenticator extends AbstractLoginFormAuthenticator
         }
 
         // For example:
-        return new RedirectResponse($this->urlGenerator->generate('app_index'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        return new RedirectResponse($this->urlGenerator->generate('/index'));
+        // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
-    public function supports(Request $request): bool
-    {
-        return $request->isMethod('POST') && $this->getLoginUrl($request) === $request->getRequestUri();
-    }
+
     protected function getLoginUrl(Request $request): string
     {
-        return $request->isMethod('POST') && $this->getLoginUrl($request) === $request->getRequestUri();
+        return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
+
 }
