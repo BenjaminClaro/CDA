@@ -34,7 +34,7 @@ class RegisterController extends AbstractController
                 )
             );
 
-            $user->setroles("Client");
+            $user->setroles(array('ROLE_USER'));
             $user->setreduction("00.00");
             $entityManager->persist($user);
             $entityManager->flush();

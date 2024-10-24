@@ -25,8 +25,8 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $role = null;
+    #[ORM\Column]
+    private array $role = [];
 
     #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: 2)]
     private ?string $reduction = null;
@@ -78,16 +78,16 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getRoles(): ?string
+    public function getRoles(): ?array
     {
 
         $role = $this->role;
-        $role = 'Client';
+        $role[] = 'ROLE_USER';
 
         return array_unique($role);
     }
 
-    public function setRoles(string $role): static
+    public function setRoles(array $role): static
     {
         $this->role = $role;
         
