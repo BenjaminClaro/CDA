@@ -23,23 +23,23 @@
         {% set total = total + (item.produits.prix * item.quantité) %}
         <div class="row">
 
-            <img class="mb-5 col-6" src="{{asset('images/'~item.its.image)}}" alt="{{item.its.libelle}}">
+            <img class="mb-5 col-6" src="{{asset('images/'~item.produits.image)}}" alt="{{item.produits.nom}}">
             <div class="mb-5 col-5 card">
         
                <div class="card-body">
-                    <h4 class="card-title">{{item.its.libelle}}</h4>
+                    <h4 class="card-title">{{item.produits.nom}}</h4>
                     <p class="card-text">
-                        {{item.its.description}}
+                        {{item.produits.description}}
                     </p>
                     
                     <div class="row count-imput ms-n3">
                         Quantité : 
-                        <a href="{{ path('app_panier_decrease', {'its_id': item.its.id}) }}" class="btn btn-icon " data-decrement>-</a>
+                        <a href="{{ path('app_panier_decrease', {'produits_id': item.produits.id}) }}" class="btn btn-icon " data-decrement>-</a>
                         <input class="col-5 form-control" type="number" value="{{item.quantité}}" readonly>
-                        <a href="{{ path('app_panier_add', {'its_id': item.its.id}) }}" class="btn btn-icon " data-increment>+</a>
+                        <a href="{{ path('app_panier_add', {'produits_id': item.produits.id}) }}" class="btn btn-icon " data-increment>+</a>
                     </div>
 
-                    <a href="{{ path('app_panier_remove', {'its_id': item.its.id}) }}" class="btn btn-primary">Retirer</a> Prix : {{item.its.prix * item.quantité}} €
+                    <a href="{{ path('app_panier_remove', {'produits_id': item.produits.id}) }}" class="btn btn-primary">Retirer</a> Prix : {{item.produits.prix * item.quantité}} €
                     
                 </div>
             </div>
