@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+
+
+<div class="example-wrapper">
+    <h1>PANIER</h1>
+
+
+    {% if panier|length <= 0 %}
+
+        <div>
+        
+            <p>Votre panier est vide</p>
+
+        </div>
+
+    {% else %}
+        {% set total = null %}
+        {% for item in panier %}
+        {% set total = total + (item.produits.prix * item.quantité) %}
+        <div class="row">
+
+            <img class="mb-5 col-6" src="{{asset('images/'~item.its.image)}}" alt="{{item.its.libelle}}">
+            <div class="mb-5 col-5 card">
+        
+               <div class="card-body">
+                    <h4 class="card-title">{{item.its.libelle}}</h4>
+                    <p class="card-text">
+                        {{item.its.description}}
+                    </p>
+                    
+                    <div class="row count-imput ms-n3">
+                        Quantité : 
+                        <a href="{{ path('app_panier_decrease', {'its_id': item.its.id}) }}" class="btn btn-icon " data-decrement>-</a>
+                        <input class="col-5 form-control" type="number" value="{{item.quantité}}" readonly>
+                        <a href="{{ path('app_panier_add', {'its_id': item.its.id}) }}" class="btn btn-icon " data-increment>+</a>
+                    </div>
+
+                    <a href="{{ path('app_panier_remove', {'its_id': item.its.id}) }}" class="btn btn-primary">Retirer</a> Prix : {{item.its.prix * item.quantité}} €
+                    
+                </div>
+            </div>
+        </div>
+
+        
+
+        {% endfor %}
+        <!-- <div>Total : {{total}} € <a href="{{ path('app_commande')}}" class="btn btn-primary">Commander</a></div>  -->
+        
+                    
+    {% endif %}
+    <div class="pb-5"></div>
+</div>
+{% endblock %}

@@ -34,6 +34,34 @@ logout:
   controller: App\Controller\SecurityController::logout
 
 
+panier:
+  path: /panier
+  controller: App\Controller\PanierController::index
+
+
+panier_add:
+  path: /panier/add/{produits_id}
+  controller: App\Controller\PanierController::addToRoute
+
+
+panier_removeall:
+  path: /panier/removeAll
+  controller: App\Controller\PanierController::removeAll
+
+
+panier_remove:
+  path: /panier/remove/{produits_id}
+  controller: App\Controller\PanierController::removeToPanier
+
+
+panier_decrease:
+  path: /panier/decrease/{produits_id}
+  controller: App\Controller\PanierController::decreaseToRoute
+
+
+
+
+
 dashboard:
     path: /admin
     controller: App\Controller\Admin\DashboardController::index
