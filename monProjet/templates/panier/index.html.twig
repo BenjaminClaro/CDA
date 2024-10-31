@@ -20,7 +20,7 @@
     {% else %}
         {% set total = null %}
         {% for item in panier %}
-        {% set total = total + (item.produits.prix * item.quantité) %}
+        {% set total = total + (item.produits.prixvente * item.quantité) %}
         <div class="row">
 
             <img class="mb-5 col-6" src="{{asset('images/'~item.produits.image)}}" alt="{{item.produits.nom}}">

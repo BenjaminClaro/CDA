@@ -21,7 +21,7 @@ class PanierService {
     }
 
 
-    public function addToPanier(int $id): void{
+    public function addToPanier(string $id): void{
 
         $panier = $this->getSession()->get('panier', []);
         if(!empty($panier[$id])){
@@ -41,7 +41,7 @@ class PanierService {
 
 
 
-    public function removeToPanier(int $id){
+    public function removeToPanier(string $id){
         $panier = $this->requestStack->getSession()->get('panier', []);
         unset($panier[$id]);
         return $this->getSession()->set('panier', $panier);
@@ -72,7 +72,7 @@ class PanierService {
 
 
 
-    public function decreaseToPanier(int $id){
+    public function decreaseToPanier(string $id){
         $panier = $this->getSession()->get('panier', []);
         if($panier[$id] > 1){
             $panier[$id]--;

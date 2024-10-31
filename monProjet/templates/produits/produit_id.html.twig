@@ -20,7 +20,7 @@
                         <img src="{{asset('images/'~produits.photo)}}" alt="{{produits.nom}}" class="img-fluid img-thumbnail"> 
                         {{produits.description}} <br> 
                         {{produits.prixvente}}€ <br> 
-                        <a href="" class="btn btn-secondary">Commander</a>
+                        <a href="/panier/add/, {'produits_id': produits.id}) }}" class="btn btn-secondary">Commander</a>
                         </div>
                        
                     {% endfor %}

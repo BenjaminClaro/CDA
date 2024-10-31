@@ -27,10 +27,10 @@ class PanierController extends AbstractController
 
 
     #[Route('/panier/add/{produits_id}', name: 'app_panier_add')]
-    public function addToRoute(PanierService $panierService, int $produits_id): Response
+    public function addToRoute(PanierService $panierService, string $produits_id): Response
     {
         $panierService->addToPanier($produits_id);
-        return $this->redirectToRoute('app_panier');
+        return $this->redirectToRoute('/panier');
     }
 
 
@@ -38,23 +38,23 @@ class PanierController extends AbstractController
     public function removeAll(PanierService $panierService): Response
     {
         $panierService->removePanierAll();
-        return $this->redirectToRoute('app_accueil');
+        return $this->redirectToRoute('/index');
     }
 
 
     #[Route('/panier/remove/{produits_id}', name: 'app_panier_remove')]
-    public function removeToPanier(PanierService $panierService, int $produits_id): Response
+    public function removeToPanier(PanierService $panierService, string $produits_id): Response
     {
         $panierService->removeToPanier($produits_id);
-        return $this->redirectToRoute('app_panier');
+        return $this->redirectToRoute('/panier');
     }
 
 
 
     #[Route('/panier/decrease/{produits_id}', name: 'app_panier_decrease')]
-    public function decreaseToRoute(PanierService $panierService, int $produits_id): Response
+    public function decreaseToRoute(PanierService $panierService, string $produits_id): Response
     {
         $panierService->decreaseToPanier($produits_id);
-        return $this->redirectToRoute('app_panier');
+        return $this->redirectToRoute('/panier');
     }
 }
