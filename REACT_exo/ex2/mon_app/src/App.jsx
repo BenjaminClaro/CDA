@@ -6,6 +6,8 @@ const App = (props) => {
 
   const [nom, setNom] = useState("");
 
+  const [prenom, setPrenom] = useState("");
+
   useEffect(() => {
       console.log("useEffect 2 ...")
   }, [nom])
@@ -14,20 +16,25 @@ const App = (props) => {
       console.log("useEffect 1 ...")
   }, [])
 
-  const handleClick1 = () => {
-      setNom(Math.random().toString(36).replace(/[^a-z]+/g, ''));
-  }
+  const handleChangeNom = (evt) => {
+    setNom(evt.target.value);
+}
+
+const handleChangePrenom = (evt) => {
+    setPrenom(evt.target.value);
+}
 
   console.log("render App...");
 
   return (
-      <>
-          <div>
-              {nom}
-          </div>
-          <button onClick={handleClick1}>change nom</button>
-      </>
-  );
+    <div>
+        <div>
+            Bonjour {nom} {prenom}
+        </div>
+        <input type="text" value={nom} onChange={handleChangeNom}/>
+        <input type="text" value={prenom} onChange={handleChangePrenom}/>
+    </div>
+);
 }
 
 
