@@ -30,7 +30,7 @@ class PanierController extends AbstractController
     public function addToRoute(PanierService $panierService, string $produits_id): Response
     {
         $panierService->addToPanier($produits_id);
-        return $this->redirectToRoute('/panier');
+        return $this->redirectToRoute('/panier'); 
     }
 
 
