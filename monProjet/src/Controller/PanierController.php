@@ -6,7 +6,6 @@ use App\Entity\Produits;
 use App\Entity\SousCategories;
 use App\Repository\ProduitsRepository;
 use App\Repository\SousCategoriesRepository;
-
 use App\Service\PanierService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,7 +40,7 @@ class PanierController extends AbstractController
         return $this->redirectToRoute('/index');
     }
 
-
+ 
     #[Route('/panier/remove/{produits_id}', name: 'app_panier_remove')]
     public function removeToPanier(PanierService $panierService, string $produits_id): Response
     {
@@ -55,6 +54,6 @@ class PanierController extends AbstractController
     public function decreaseToRoute(PanierService $panierService, string $produits_id): Response
     {
         $panierService->decreaseToPanier($produits_id);
-        return $this->redirectToRoute('/panier');
+        return $this->redirectToRoute('/panier'); 
     }
 }
