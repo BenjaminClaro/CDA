@@ -2,6 +2,8 @@
 
 namespace App\Service;
 
+
+use App\Controller\PanierController;
 use App\Entity\Produits;
 use App\Entity\SousRubriques;
 use App\Repository\ProduitsRepository;
