@@ -8,6 +8,7 @@
 <div class="example-wrapper">
     <h1>PANIER</h1>
 
+    
 
     {% if panier|length <= 0 %}
 
@@ -18,7 +19,7 @@
         </div>
 
     {% else %}
-        {% set total = null %}
+        {% set total = 0 %}
         {% for item in panier %}
         {% set total = total + (item.produits.prixvente * item.quantité) %}
         <div class="row">
