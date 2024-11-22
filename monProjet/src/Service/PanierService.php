@@ -23,7 +23,7 @@ class PanierService {
     }
 
 
-    public function addToPanier(string $id): void{
+    public function addToPanier(int $id): void{
 
         $panier = $this->getSession()->get('panier', []);
         if(!empty($panier[$id])){

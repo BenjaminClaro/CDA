@@ -43,7 +43,7 @@ class RegisterController extends AbstractController
 
 
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('/');
         }
 
         return $this->render('register/index.html.twig', [

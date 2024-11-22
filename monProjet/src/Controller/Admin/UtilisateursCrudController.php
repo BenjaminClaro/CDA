@@ -27,7 +27,7 @@ class UtilisateursCrudController extends AbstractCrudController
             TextField::new('nom'),
             TextField::new('prenom'),
             EmailField::new('email'),
-            ArrayField::new('role'),
+            ArrayField::new('roles'),
         ];
     }
     

@@ -22,7 +22,7 @@ class Authenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
-    public const LOGIN_ROUTE = 'app_login';
+    public const LOGIN_ROUTE = '/login';
 
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
@@ -36,7 +36,7 @@ class Authenticator extends AbstractLoginFormAuthenticator
 
         return new Passport(
             new UserBadge($email),
-            new PasswordCredentials($request->request->get('password')),
+            new PasswordCredentials($request->request->get('password', '')),
             [
                 new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
                 new RememberMeBadge(),
@@ -54,10 +54,7 @@ class Authenticator extends AbstractLoginFormAuthenticator
         return new RedirectResponse($this->urlGenerator->generate('app_index'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
-    public function supports(Request $request): bool
-    {
-        return $request->isMethod('POST') && $this->getLoginUrl($request) === $request->getRequestUri();
-    }
+
     protected function getLoginUrl(Request $request): string
     {
         return $request->isMethod('POST') && $this->getLoginUrl($request) === $request->getRequestUri();
