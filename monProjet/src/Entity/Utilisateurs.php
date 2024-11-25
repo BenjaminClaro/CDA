@@ -191,16 +191,7 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getSalt()
-    {
-        // The bcrypt and argon2i algorithms don't require a separate salt.
-        // You *may* need a real salt if you choose a different encoder.
-        return null;
-    }
 
-    public function getUsername()
-    {
-        return $this->username;
-    }
+
 
 }

@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class RegisterController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $passwordHasher, UserAuthenticatorInterface $userAuthenticator, Authenticator $authenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, Authenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
 
         $user = new Utilisateurs();
@@ -28,9 +28,9 @@ class RegisterController extends AbstractController
             // encode the plain password
 
             $user->setPassword(
-                $passwordHasher->hashPassword(
+                $userPasswordHasher->hashPassword(
                     $user,
-                    $form->get('password')->getData()
+                    $form->get('plainPassword')->getData()
                 )
             );
 
@@ -43,7 +43,11 @@ class RegisterController extends AbstractController
 
 
 
-            return $this->redirectToRoute('/');
+            return $userAuthenticator->authenticateUser(
+                $user,
+                $authenticator,
+                $request
+            );
         }
 
         return $this->render('register/index.html.twig', [
