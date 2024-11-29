@@ -5,7 +5,7 @@
 {% block body %}
 
 
-<div class="example-wrapper">
+<div class="container">
     <h1>PANIER</h1>
 
     
@@ -24,10 +24,10 @@
         {% set total = total + (item.produits.getPrixVente * item.quantité) %}
         <div class="row">
 
-            <img class="mb-5 col-6" src="{{asset('images/'~item.produits.getPhoto)}}" alt="{{item.produits.nom}}">
+            <img class="mb-5 col-6" style="max-width: 200px; height: 200px;" src="{{asset('images/'~item.produits.getPhoto)}}" alt="{{item.produits.nom}}">
             <div class="mb-5 col-5 card">
         
-               <div class="card-body">
+               <div class="card-body ">
                     <h4 class="card-title">{{item.produits.nom}}</h4>
                     <p class="card-text">
                         {{item.produits.description}}
@@ -54,5 +54,6 @@
                     
     {% endif %}
     <div class="pb-5"></div>
+    
 </div>
 {% endblock %}
