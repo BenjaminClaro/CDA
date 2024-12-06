@@ -8,7 +8,7 @@ use App\Templates\Panier;
 use App\Entity\Commandes;
 use App\Entity\Produits; 
 use App\Entity\Rubriques;
-use App\Entity\Utilisateur;
+use App\Entity\Utilisateurs;
 use App\Repository\ProduitsRepository;
 use App\Repository\RubriquesRepository;
 use App\Form\CommandeType;
@@ -24,7 +24,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class CommandeController extends AbstractController
 {
     #[Route('/commande', name: 'app_commande')]
-    public function index(PanierService $panierService, Request $request, EntityManagerInterface $entityManager, #[CurrentUser] ?Utilisateurs $utilisateur): Response
+    public function index(PanierService $panierService, Request $request, EntityManagerInterface $entityManager, #[CurrentUser] ?Utilisateurs $utilisateurs): Response
     {
 
         $form = $this->createForm(CommandeType::class);
@@ -46,7 +46,7 @@ class CommandeController extends AbstractController
             
             $message = $data;
 
-            $message->setUtilisateur($this->getUser());
+            $message->setUtilisateurs($this->getUser());
             
             $entityManager->persist($message);
             $entityManager->flush();

@@ -12,6 +12,7 @@
 
     {% set total = null %}
 
+    {% set total = 0 %}
     {% for item in panier %}
     {% set total = total + (item.produits.getPrixVente * item.quantité) %}
     {% endfor %}
@@ -19,18 +20,18 @@
 
 
             <div class="col">
-                <label for="livraison">Adresse de livraison</label>
-                <input type="text" class="form-control" name="livraison" id="livraison" required>
+                <label for="adresse_livraison">Adresse de livraison</label>
+                <input type="text" class="form-control" name="adresse_livraison" id="adresse_livraison" required>
             </div>
 
             <div class="col">
-                <label for="facturation">Adresse de facturation</label>
-                <input type="text" class="form-control" name="facturation" id="facturation" required>
+                <label for="adresse_facturation">Adresse de facturation</label>
+                <input type="text" class="form-control" name="adresse_facturation" id="adresse_facturation" required>
             </div>
 
             <div class="col">
-                <label for="paiement">Mode de paiement</label>
-                <input type="text" class="form-control" name="paiement" id="paiement" required>
+                <label for="reglement">Mode de paiement</label>
+                <input type="text" class="form-control" name="reglement" id="reglement" required>
             </div>
 
     {{ form_start(form) }}

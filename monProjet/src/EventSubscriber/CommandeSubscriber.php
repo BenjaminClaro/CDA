@@ -3,7 +3,7 @@
 namespace App\EventSubscriber;
 
 use App\Entity\Commandes;
-use App\Repository\UtilisateurRepository;
+use App\Repository\UtilisateursRepository;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Events;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
@@ -13,11 +13,11 @@ use Symfony\Component\Mime\Email;
 class CommandeSubscriber implements EventSubscriber
 {
     private $mailer;
-    private $utilisateur;
-    public function __construct(MailerInterface $mailer,UtilisateurRepository $utilisateur)
+    private $utilisateurs;
+    public function __construct(MailerInterface $mailer,UtilisateursRepository $utilisateurs)
     {
         $this->mailer = $mailer;
-        $this->utilisateur = $utilisateur;
+        $this->utilisateurs = $utilisateurs;
     }
 
     public function getSubscribedEvents()
@@ -37,11 +37,11 @@ class CommandeSubscriber implements EventSubscriber
 
         if ($entity instanceof Commandes) {
 
-            $utilisateur = $this->utilisateur->find($entity->getUtilisateur());
+            $utilisateurs = $this->utilisateurs->find($entity->getUtilisateurs());
 
                 $email = (new Email())
-                    ->from('thedistrict@gmail.com')
-                    ->to($utilisateur->getEmail())
+                    ->from('villagegreen@gmail.com')
+                    ->to($utilisateurs->getEmail())
                     ->subject('Commande validée')
                     ->text("Votre commande à bien été pris en compte et sera traité prochainnement");
 
